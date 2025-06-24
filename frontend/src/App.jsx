@@ -11,22 +11,16 @@ import CombinedGraph from './components/CombinedGraph';
 import BarComparison from './components/BarComparison';
 import DataTable from './components/DataTable';
 
-import { generateRandomCurrent } from "./utils/randomDataGenerator";
+import useMQTTData from './hooks/useMQTTData';
 
 
 export default function App() {
-  const [currentData, setCurrentData] = useState([]);
-
+  
+  const currentData = useMQTTData();
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentData((prev) => {
-        const next = [...prev, generateRandomCurrent()];
-        return next.slice(-20); // Keep the last 20 points
-      });
-    }, 2000); // every 2 seconds
-
-    return () => clearInterval(interval); // cleanup on unmount
+    document.title = 'Energy Dashboard';
   }, []);
+
 
   return (
     <div className="bg-gray-100 min-h-screen">
