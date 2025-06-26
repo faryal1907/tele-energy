@@ -17,7 +17,13 @@ export default function useMQTTData() {
       reconnectPeriod: 4000,
     };
 
-    const client = mqtt.connect(BROKER, options);
+    const client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER, {
+    username: import.meta.env.VITE_MQTT_USER,
+    password: import.meta.env.VITE_MQTT_PASS,
+    protocol: 'wss',
+    keepalive: 60,
+  });
+
 
     client.on('connect', () => {
       console.log('✅ MQTT connected');
