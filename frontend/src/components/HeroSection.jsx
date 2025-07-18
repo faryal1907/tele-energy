@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HeroSection() {
   return (
-    <div className="relative pt-24 pb-16 overflow-hidden">
+    <div className="relative pt-32 pb-28 overflow-hidden">
       {/* Background with animated gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-energy-50 via-power-50 to-electric-50"></div>
       
@@ -20,7 +20,7 @@ export default function HeroSection() {
         
         <h2 className="text-5xl md:text-6xl font-extrabold mb-6 animate-slide-up">
           <span className="bg-energy-gradient bg-clip-text text-transparent">
-            Real-Time Current
+            Real-Time Energy
           </span>
           <br />
           <span className="bg-power-gradient bg-clip-text text-transparent">
@@ -29,7 +29,7 @@ export default function HeroSection() {
         </h2>
         
         <p className="text-xl text-neutral-600 mb-4 max-w-2xl mx-auto leading-relaxed animate-slide-up">
-          Track and visualize 3-phase current data in real-time with advanced analytics and intuitive dashboards
+          View entire campus energy consumption in real-time, track usage patterns, and receive smart alerts for anomalies.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8 animate-slide-up">
@@ -48,8 +48,10 @@ export default function HeroSection() {
         </div>
         
         <p className="text-lg text-neutral-500 mt-6 font-medium">
-          Stay informed, stay safe! ⚡
+          NUST at a glance, or view detailed analytics for each department!
         </p>
+        {/* Decorative SVG Arrow */}
+        
       </div>
     </div>
   );
