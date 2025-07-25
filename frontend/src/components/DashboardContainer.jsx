@@ -8,7 +8,7 @@ import DataTable from './DataTable';
 
 export default function Dashboard({ data }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 rounded-2x1">
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-energy-100 p-6 hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-slide-up">
         <PhaseAGraph data={data} />
       </div>

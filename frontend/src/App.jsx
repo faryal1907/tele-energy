@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
+import AnimatedBackground from './components/AnimatedBackground';
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -30,7 +31,7 @@ export default function App() {
   // Simulated current data for demonstration
     const departmentNames = [
     'SCME', 'SEECS', 'SMME', 'NICE', 'IGIS', 'NBS', 'SADA',
-    'S3H', 'ASAB', 'SNS', 'NSHS', 'SINES', 'LAW SCHOOL'
+    'S3H', 'ASAB', 'SNS', 'NSHS', 'SINES', 'NLS'
   ];
 
   const currentData = departmentNames.map(name => ({
@@ -39,26 +40,12 @@ export default function App() {
   }));
 
 
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-energy-700">
+      <AnimatedBackground />
       <Navbar />
       <HeroSection />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="dashboard">
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl font-bold mb-4">
-            <span className="bg-energy-gradient bg-clip-text text-transparent">
-              Energy Dashboard
-            </span>
-          </h1>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            Current Monitoring & Analytics
-          </p>
-        </div>
-
-        {/* add code here such that a speedometer is displayed, having a certain threshold energy, beyond which 
-        the reading background is red, the remaining speedometer background should match the theme of the page
-        also add logic such that an alert pops up if any department's speedometer goes beyond that threshold */}
         <Speedometer currentData={currentData} />
       </main>
     </div>

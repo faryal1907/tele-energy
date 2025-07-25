@@ -8,7 +8,7 @@ export default function PhaseCGraph({ data }) {
         <h3 className="text-xl font-bold text-electric-700">Phase C Current</h3>
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-electric-500 rounded-full animate-pulse"></div>
-          <span className="text-sm text-neutral-600 font-medium">Live</span>
+          <span className="text-sm text-cream-500 font-medium">Live</span>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={200}>

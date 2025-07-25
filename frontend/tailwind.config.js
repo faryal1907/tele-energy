@@ -8,40 +8,52 @@ module.exports = {
     extend: {
       colors: {
         energy: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
+          50: '#e3e7f6',   // lightest blue
+          100: '#c2c9e6',
+          200: '#8e9acb',
+          300: '#5a6bb0',
+          400: '#2d3e8a',
+          500: '#051462', // main blue
+          600: '#04104e',
+          700: '#030c3a',
+          800: '#020826',
+          900: '#010413', // darkest blue
         },
         power: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#fff3e1',   // lightest orange
+          100: '#ffe0b8',
+          200: '#ffd08c',
+          300: '#ffc05f',
+          400: '#ffb03d',
+          500: '#F7941D', // main orange
+          600: '#d97d13',
+          700: '#b3640e',
+          800: '#8c4b09',
+          900: '#663305', // darkest orange
         },
         electric: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308',
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
+          50: '#fff7ed',   // very light orange/cream
+          100: '#ffefd6',
+          200: '#ffe7be',
+          300: '#ffdfa7',
+          400: '#ffd790',
+          500: '#F7941D', // accent orange
+          600: '#d97d13',
+          700: '#b3640e',
+          800: '#8c4b09',
+          900: '#663305',
+        },
+        cream: {
+          50: '#fff9f1',
+          100: '#fff4e3',
+          200: '#ffefd6',
+          300: '#ffe9c8',
+          400: '#ffe4bb',
+          500: '#FFEBD3', // main cream for text
+          600: '#e6d4be',
+          700: '#b3a68f',
+          800: '#807961',
+          900: '#4d4b32',
         },
         neutral: {
           50: '#fafafa',
@@ -78,9 +90,9 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'energy-gradient': 'linear-gradient(135deg, #22c55e 0%, #3b82f6 50%, #eab308 100%)',
-        'power-gradient': 'linear-gradient(135deg, #3b82f6 0%, #22c55e 100%)',
-        'electric-gradient': 'linear-gradient(135deg, #eab308 0%, #f59e0b 100%)',
+        'energy-gradient': 'linear-gradient(135deg, #051462 0%, #5a6bb0 50%, #F7941D 100%)',
+        'power-gradient': 'linear-gradient(135deg, #F7941D 0%, #ffe0b8 100%)',
+        'electric-gradient': 'linear-gradient(135deg, #F7941D 0%, #FFEBD3 100%)',
       }
     },
   },
