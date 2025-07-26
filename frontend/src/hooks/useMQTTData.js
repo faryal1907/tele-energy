@@ -1,61 +1,40 @@
-import { useEffect, useState } from 'react';
-import mqtt from 'mqtt';
+import { useEffect, useState } from "react";
+import mqtt from "mqtt";
 
-export default function useMQTTData() {
-  const [data, setData] = useState([]);
+export default function useMQTTData(topic) {
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const BROKER = 'wss://0a4da080df9b471da9fe248f9965857e.s1.eu.hivemq.cloud:8884/mqtt';
-    const TOPIC = 'energy/data';
+    const client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt");
 
-    const options = {
-      clientId: `mqttjs_${Math.random().toString(16).substr(2, 8)}`,
-      username: 'faryal1907',
-      password: 'Family9366',
-      clean: true,
-      connectTimeout: 4000,
-      reconnectPeriod: 4000,
-    };
+    client.on("connect", () => {
+      console.log("✅ MQTT connected");
+      if (topic) {
+        client.subscribe(topic, (err) => {
+          if (!err) {
+            console.log(`📡 Subscribed to topic: ${topic}`);
+          }
+        });
+      }
+    });
 
-    const client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER, {
-    username: import.meta.env.VITE_MQTT_USER,
-    password: import.meta.env.VITE_MQTT_PASS,
-    protocol: 'wss',
-    keepalive: 60,
-  });
-
-
-    client.on('connect', () => {
-      console.log('✅ MQTT connected');
-      client.subscribe(TOPIC, (err) => {
-        if (err) {
-          console.error('❌ Subscription error:', err);
-        } else {
-          console.log(`📡 Subscribed to topic: ${TOPIC}`);
+    client.on('message', (incomingTopic, message) => {
+      if (incomingTopic === topic) {
+        try {
+          const parsed = JSON.parse(message.toString());
+          console.log('Received message:', parsed); // <-- Add this line
+          setData((prev) => [...prev.slice(-19), parsed]);
+        } catch (err) {
+          console.error('❌ Failed to parse message:', err);
         }
-      });
-    });
-
-    client.on('error', (err) => {
-      console.error('❌ MQTT connection error:', err);
-      client.end(); // optional: may trigger reconnect loop if reconnectPeriod > 0
-    });
-
-    client.on('message', (topic, message) => {
-      try {
-        const parsed = JSON.parse(message.toString());
-        setData((prev) => [...prev.slice(-19), parsed]); // keep last 20 entries
-      } catch (err) {
-        console.error('❌ Failed to parse message:', err);
       }
     });
 
     return () => {
-      if (client.connected) {
-        client.end(true, () => console.log('🔌 Disconnected from MQTT'));
-      }
+      if (topic) client.unsubscribe(topic);
+      client.end();
     };
-  }, []);
+  }, [topic]);
 
   return data;
 }

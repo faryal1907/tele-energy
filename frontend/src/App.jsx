@@ -1,53 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './index.css';
-import AnimatedBackground from './components/AnimatedBackground';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
-
-import PhaseAGraph from './components/PhaseAGraph';
-import PhaseBGraph from './components/PhaseBGraph';
-import PhaseCGraph from './components/PhaseCGraph';
-import CombinedGraph from './components/CombinedGraph';
-import BarComparison from './components/BarComparison';
-import DataTable from './components/DataTable';
-import Dashboard from './components/DashboardContainer';
-
-
+import DepartmentDashboard from './components/DepartmentDashboard';
 import Speedometer from './components/Speedometer';
 
-import useMQTTData from './hooks/useMQTTData';
+// Replace this with `useMQTTData()` when using live data
+const departments = [
+  { id: 'scme', name: 'SCME' },
+  { id: 'seecs', name: 'SEECS' },
+  { id: 'smme', name: 'SMME' },
+  { id: 'nice', name: 'NICE' },
+  { id: 'igis', name: 'IGIS' },
+  { id: 'nbs', name: 'NBS' },
+  { id: 'sada', name: 'SADA' },
+  { id: 's3h', name: 'S3H' },
+  { id: 'asab', name: 'ASAB' },
+  { id: 'sns', name: 'SNS' },
+  { id: 'nshs', name: 'NSHS' },
+  { id: 'sines', name: 'SINES' },
+  { id: 'nls', name: 'NLS' }
+];
 
-// Example threshold
-const THRESHOLD = 70;
+const currentData = departments.map(dept => ({
+  ...dept,
+  energy: Math.floor(Math.random() * 101) // Random energy for each department
+}));
 
 export default function App() {
-  
-  // const currentData = useMQTTData();
-  // useEffect(() => {
-  //   document.title = 'Energy Dashboard';
-  // }, []);
-
-  // Simulated current data for demonstration
-    const departmentNames = [
-    'SCME', 'SEECS', 'SMME', 'NICE', 'IGIS', 'NBS', 'SADA',
-    'S3H', 'ASAB', 'SNS', 'NSHS', 'SINES', 'NLS'
-  ];
-
-  const currentData = departmentNames.map(name => ({
-    name,
-    energy: Math.floor(Math.random() * 101) // Random energy between 0 and 100
-  }));
-
-
   return (
-    <div className="min-h-screen bg-energy-700">
-      <AnimatedBackground />
-      <Navbar />
-      <HeroSection />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="dashboard">
-        <Speedometer currentData={currentData} />
-      </main>
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-energy-700">
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <HeroSection />
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="dashboard">
+                  <Speedometer currentData={currentData} />
+                </main>
+              </>
+            }
+          />
+          <Route path="/dashboard/:department" element={<DepartmentDashboard />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }

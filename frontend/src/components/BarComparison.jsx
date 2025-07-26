@@ -1,18 +1,30 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from 'recharts';
 
 export default function BarComparison({ data }) {
-  // Prepare a single latest snapshot for the bar chart
-  const latest = data[data.length - 1] || {
-    phaseA: 0,
-    phaseB: 0,
-    phaseC: 0,
-  };
+  // Defensive check: handle missing or invalid data
+  if (!data || !Array.isArray(data) || data.length === 0) {
+    return (
+      <div className="h-full flex items-center justify-center text-gray-500 py-4">
+        📉 No current data to display
+      </div>
+    );
+  }
+
+  const latest = data[data.length - 1];
 
   const barData = [
-    { name: 'Phase A', current: latest.phaseA, color: '#22c55e' },
-    { name: 'Phase B', current: latest.phaseB, color: '#3b82f6' },
-    { name: 'Phase C', current: latest.phaseC, color: '#eab308' },
+    { name: 'Phase A', current: latest.phaseA ?? 0, color: '#22c55e' },
+    { name: 'Phase B', current: latest.phaseB ?? 0, color: '#3b82f6' },
+    { name: 'Phase C', current: latest.phaseC ?? 0, color: '#eab308' },
   ];
 
   return (
@@ -29,16 +41,16 @@ export default function BarComparison({ data }) {
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis dataKey="name" stroke="#6b7280" />
           <YAxis stroke="#6b7280" />
-          <Tooltip 
+          <Tooltip
             contentStyle={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               border: '1px solid #d1d5db',
               borderRadius: '8px',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
             }}
           />
-          <Bar 
-            dataKey="current" 
+          <Bar
+            dataKey="current"
             fill="#3b82f6"
             radius={[4, 4, 0, 0]}
           />
