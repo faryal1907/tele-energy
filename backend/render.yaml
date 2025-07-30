@@ -3,10 +3,10 @@ services:
     name: tele-energy
     env: node
     buildCommand: |
-    npm install
-    cd ../frontend && npm install && npm run build
+      npm install
+      cd ../frontend && npm install && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-    healthCheckPath: /api/health 
+    healthCheckPath: /api/health
