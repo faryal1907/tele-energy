@@ -37,7 +37,7 @@ export default function Speedometer({ currentData }) {
                 className="block rounded-2xl focus:outline-none focus:ring-2 focus:ring-power-400"
               >
                 <div
-                  className="card bg-power-600/90 text-cream-500 rounded-2xl shadow-lg p-2 flex flex-col items-center justify-center
+                  className="card bg-power-500 text-cream-500 rounded-2xl shadow-lg p-2 flex flex-col items-center justify-center
                   transition duration-300 hover:shadow-2xl"
                 >
                   <div className="flex justify-center items-center w-full mb-1 mt-16">

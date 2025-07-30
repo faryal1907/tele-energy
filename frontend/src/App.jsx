@@ -32,7 +32,7 @@ const currentData = departments.map(dept => ({
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-energy-700">
+      <div className="min-h-screen bg-cream-200">
         <Navbar />
         <Routes>
           <Route

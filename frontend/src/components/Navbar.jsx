@@ -45,7 +45,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             <a
               href="#contact"
-              className="text-sm sm:text-base text-energy-100 hover:text-energy-200 font-medium transition-all duration-300 hover:scale-105 relative group"
+              className="text-sm sm:text-base text-power-500 hover:text-power-600 font-medium transition-all duration-300 hover:scale-105 relative group"
             >
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-electric-gradient transition-all duration-300 group-hover:w-full"></span>
@@ -55,7 +55,7 @@ export default function Navbar() {
 
             <a
               href="#settings"
-              className="text-sm sm:text-base text-energy-100 hover:text-energy-200 font-medium transition-all duration-300 hover:scale-105 relative group"
+              className="text-sm sm:text-base text-power-500 hover:text-power-600 font-medium transition-all duration-300 hover:scale-105 relative group"
             >
               About Us
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-electric-gradient transition-all duration-300 group-hover:w-full"></span>
@@ -100,30 +100,6 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {/* Mobile Departments Dropdown */}
-              <div className="relative">
-                <button className="w-full text-left flex items-center justify-between px-3 py-2 text-sm text-energy-800 hover:bg-energy-500/10 hover:text-orange-600 transition-all duration-150 rounded-md">
-                  <span>Departments</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className="mt-1 ml-4 space-y-1">
-                  {[
-                    'SCME', 'SEECS', 'SMME', 'NICE', 'IGIS', 'NBS', 'SADA',
-                    'S3H', 'ASAB', 'SNS', 'NSHS', 'SINES', 'NLS',
-                  ].map((dept) => (
-                    <a
-                      key={dept}
-                      href={`#${dept.replace(/\s+/g, '').toLowerCase()}`}
-                      className="block px-3 py-2 text-sm text-energy-700 hover:bg-energy-500/10 hover:text-orange-600 transition-all duration-150 rounded-md"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {dept}
-                    </a>
-                  ))}
-                </div>
-              </div>
 
               <a
                 href="#settings"
