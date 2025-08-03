@@ -28,15 +28,15 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`bg-transparent fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+      className={`bg-energy-700 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
         show ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-1">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <div className="w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center">
+          <div className="flex-shrink-0 pt-10">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 -mt-10 flex items-center justify-center">
               <Logo width="100%" height="100%" />
             </div>
           </div>
@@ -50,9 +50,6 @@ export default function Navbar() {
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-electric-gradient transition-all duration-300 group-hover:w-full"></span>
             </a>
-            
-              
-
             <a
               href="#settings"
               className="text-sm sm:text-base text-power-500 hover:text-power-600 font-medium transition-all duration-300 hover:scale-105 relative group"
@@ -62,7 +59,7 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
@@ -98,9 +95,8 @@ export default function Navbar() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200">
+          <div className="md:hidden mt-2 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-
               <a
                 href="#settings"
                 className="block px-3 py-2 text-sm text-energy-800 hover:bg-energy-500/10 hover:text-orange-600 transition-all duration-150 rounded-md"

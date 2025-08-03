@@ -1,3 +1,4 @@
+// unchanged imports
 import React from "react";
 import ReactSpeedometer from "react-d3-speedometer";
 import Tilt from "react-parallax-tilt";
@@ -15,9 +16,9 @@ export default function Speedometer({ currentData }) {
   return (
     <div className="relative">
       {/* Animated background circles */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-energy-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow z-0"></div>
+      {/* <div className="absolute top-10 left-10 w-32 h-32 bg-energy-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow z-0"></div>
       <div className="absolute top-20 right-20 w-24 h-24 bg-power-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-bounce-slow z-0"></div>
-      <div className="absolute bottom-10 left-1/4 w-20 h-20 bg-electric-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow z-0"></div>
+      <div className="absolute bottom-10 left-1/4 w-20 h-20 bg-electric-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow z-0"></div> */}
 
       <div className="relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
@@ -37,8 +38,8 @@ export default function Speedometer({ currentData }) {
                 className="block rounded-2xl focus:outline-none focus:ring-2 focus:ring-power-400"
               >
                 <div
-                  className="card bg-power-500 text-cream-500 rounded-2xl shadow-lg p-2 flex flex-col items-center justify-center
-                  transition duration-300 hover:shadow-2xl"
+                  className="card bg-white/10 border border-power-400 border-opacity-60 backdrop-blur-md text-cream-500 rounded-2xl shadow-md p-2
+                  flex flex-col items-center justify-center transition duration-300 hover:shadow-2xl"
                 >
                   <div className="flex justify-center items-center w-full mb-1 mt-16">
                     <div className="w-44 h-32 flex justify-center items-center">
@@ -48,7 +49,12 @@ export default function Speedometer({ currentData }) {
                         maxValue={100}
                         segments={4}
                         needleColor="#051462"
-                        segmentColors={["#008d34ff", "#c49300ff", "#b5540eff", "#ae0000ff"]}
+                        segmentColors={[
+                          "#307c4cff",
+                          "#e2d51cff",
+                          "#dc6d1dff",
+                          "#980505ff",
+                        ]}
                         textColor="#1f2937"
                         ringWidth={24}
                         height={220}
