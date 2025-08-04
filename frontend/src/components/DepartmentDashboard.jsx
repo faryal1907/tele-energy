@@ -18,7 +18,7 @@ export default function DepartmentDashboard() {
         {displayName} Dashboard
       </h1>
 
-      {data ? (
+      {data && data.length > 0 ? (
         <DashboardContainer data={data} department={normalizedKey} />
       ) : (
         <div className="text-gray-600 text-center py-10">
@@ -26,6 +26,9 @@ export default function DepartmentDashboard() {
           <code className="text-sm text-energy-500 bg-gray-100 px-2 py-1 rounded">
             {topic}
           </code>
+          <p className="mt-2 text-sm text-gray-500">
+            Make sure the backend publisher is running and publishing data to this topic.
+          </p>
         </div>
       )}
     </div>
