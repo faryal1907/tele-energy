@@ -1,3 +1,6 @@
+import React from "react";
+import PredictiveGraph from "./PredictiveGraph";
+
 export default function DataTable({ data }) {
   const rows = [...data].reverse().slice(0, 5);
 
@@ -46,6 +49,21 @@ export default function DataTable({ data }) {
   URL.revokeObjectURL(url);
 };
 
+  // Modal state + snapshot of latest 5 at click time
+  const [showPredictive, setShowPredictive] = React.useState(false);
+  const [predictiveData, setPredictiveData] = React.useState([]);
+  const canPredict = Array.isArray(data) && data.length >= 5;
+
+  const handleOpenPredictive = () => {
+    if (!canPredict) {
+      alert("Need at least 5 readings to generate predictive analysis.");
+      return;
+    }
+    // snapshot the latest 5 (chronological)
+    const snapshot = data.slice(-5);
+    setPredictiveData(snapshot);
+    setShowPredictive(true);
+  };
 
   return (
     <div className="h-full">
@@ -90,9 +108,50 @@ export default function DataTable({ data }) {
                 <td className="p-3 font-semibold text-electric-600">{row.phaseC} A</td>
               </tr>
             ))}
+
+            {/* Button row at the end of the 5 rows */}
+            <tr>
+              <td colSpan={4} className="p-3">
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleOpenPredictive}
+                    className="px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!canPredict}
+                  >
+                    Generate Predictive Analysis
+                  </button>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
+
+            {/* Predictive Modal centered */}
+            {showPredictive && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div
+            className="bg-white rounded-2xl shadow-lg p-4 md:p-5"
+            style={{
+              width: 'min(90vw, 640px)',
+              height: 'min(90vw, 640px)'
+            }}
+          >
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <h2 className="text-xs md:text-sm font-semibold">Predictive Analysis (Next 12 hours)</h2>
+              <button
+                onClick={() => setShowPredictive(false)}
+                className="px-2.5 py-1 text-xs font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700"
+              >
+                Close
+              </button>
+            </div>
+            <div className="w-full h-[85%]">
+              <PredictiveGraph data={predictiveData} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
