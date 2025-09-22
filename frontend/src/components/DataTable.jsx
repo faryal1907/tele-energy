@@ -1,31 +1,51 @@
 export default function DataTable({ data }) {
   const rows = [...data].reverse().slice(0, 5);
 
-  // 🔹 CSV download handler
   const handleDownload = () => {
-  // ✅ Header should align exactly with row data
+  // Define the table header row
   const header = ["Time", "Phase A", "Phase B", "Phase C"];
 
+  // Build + define all CSV rows
   const csvRows = [
-    header.join(","),
+    header.join(","), // turns ["Time","Phase A","Phase B","Phase C"] into "Time,Phase A,Phase B,Phase C"
+
+    // Loop through each row of data
     ...rows.map((row) =>
       [
-        new Date(row.timestamp).toLocaleTimeString(), // ⬅️ Goes under "Time"
-        row.phaseA, // ⬅️ Goes under "Phase A"
-        row.phaseB, // ⬅️ Goes under "Phase B"
-        row.phaseC, // ⬅️ Goes under "Phase C"
+        `"${new Date(row.timestamp).toLocaleTimeString()}"`, // quoted time
+        `"${row.phaseA}"`,
+        `"${row.phaseB}"`,
+        `"${row.phaseC}"`,
       ].join(",")
     ),
   ];
 
-  const blob = new Blob([csvRows.join("\n")], { type: "text/csv" });
+  // Combine everything into one big string
+  const csvString = csvRows.join("\n");
+  // Now looks like:
+  // Time,Phase A,Phase B,Phase C
+  // 05:48:01,12.73,7.96,7.61
+  // 05:47:59,14.25,5.79,13.76
+  // ...
+
+  // Make a "blob" (file-like object in memory) from the string
+  const blob = new Blob([csvString], { type: "text/csv" });
+
+  // Create a temporary URL pointing to that blob
   const url = URL.createObjectURL(blob);
+
+  // Make a hidden <a> (link) element
   const a = document.createElement("a");
-  a.href = url;
-  a.download = "latest_readings.csv";
+  a.href = url;                      // point link to the blob
+  a.download = "latest_readings.csv"; // tell browser this should download as a file
+
+  // "Click" the link with JavaScript → triggers the download
   a.click();
+
+  // Clean up the temporary URL (free memory)
   URL.revokeObjectURL(url);
 };
+
 
   return (
     <div className="h-full">
@@ -36,7 +56,7 @@ export default function DataTable({ data }) {
             <div className="w-3 h-3 bg-electric-500 rounded-full animate-pulse"></div>
             <span className="text-sm text-energy-700 font-medium">Recent</span>
           </div>
-          {/* 🔹 Download Button */}
+          {/* Download Button */}
           <button
             onClick={handleDownload}
             className="px-3 py-1.5 text-sm font-medium text-white bg-energy-600 rounded-lg shadow hover:bg-energy-700 transition duration-200"
