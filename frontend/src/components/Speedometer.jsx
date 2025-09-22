@@ -62,6 +62,7 @@ export default function Speedometer({ currentData }) {
                         customSegmentStops={[0, 25, 50, 75, 100]}
                         needleTransition="easeElastic"
                         needleTransitionDuration={2000}
+                        currentValueText="${value} units"
                       />
                     </div>
                   </div>
