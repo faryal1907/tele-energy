@@ -30,10 +30,10 @@ export default function BarComparison({ data }) {
   return (
     <div className="h-full">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-cream-500">Current Comparison</h3>
+        <h3 className="text-xl font-bold text-energy-700">Current Comparison</h3>
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-power-500 rounded-full animate-pulse"></div>
-          <span className="text-sm text-cream-500 font-medium">Latest</span>
+          <span className="text-sm text-energy-700 font-medium">Latest</span>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={250}>
